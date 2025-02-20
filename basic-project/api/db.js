@@ -4,7 +4,7 @@ const db = mysql.createConnection({
   host: "172.23.94.17",
   user: "root_wsl",
   password: "Ryz33r015.lht",
-  database: "apinode"
+  database: "apibook"
 })
 
 module.exports = db
