@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
 
 app.get('/hello', (req, res) => {
   console.log({ urlParam: req.query })
-  res.send('Hello World!')
+  res.send('Hello World')
 })
 
 app.post("/login", (req, res) => {
