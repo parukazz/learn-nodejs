@@ -2,17 +2,26 @@ const express = require('express')
 const app = express()
 const port = 3000
 const bodyParser = require('body-parser')
-
-app.use(bodyParser.json())
+const db = require('./db')
+const response = require('./response')
 
 // route / url / endpoint utama
+app.use(bodyParser.json())
+
 app.get('/', (req, res) => {
-  res.send('main')
+  const query = 'SELECT * FROM users'
+  db.query(query, (err, rs) => {
+    // result from query
+    response(200, rs, "Get All Users", res)
+  })
 })
 
-app.get('/hello', (req, res) => {
-  console.log({ urlParam: req.query })
-  res.send('Hello World')
+app.get('/find', (req, res) => {
+  console.log(`find id: `, req.query.id)
+  const query = `SELECT name FROM users WHERE id = ${req.query.id}`
+  db.query(query, (err, rs) => {
+    response(200, rs, "Get User Name", res)
+  })
 })
 
 app.post("/login", (req, res) => {
